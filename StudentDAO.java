@@ -1,28 +1,3 @@
-// JDBC CRUD Coding Question
-// Write a Java class StudentDAO that performs CRUD operations on a student table.
-// Table Structure:
-// id (int, primary key)
-// name (varchar)
-// email (varchar)
-// Requirements:
-// 1. Create (INSERT)
-// Implement method:
-// Java
-// public boolean addStudent(int id, String name, String email)
-// 2. Read (SELECT)
-// Implement methods:
-// Java
-// public void getStudentById(int id)
-
-// public void getAllStudents()
-// 3. Update
-// Implement method:
-// Java
-// public boolean updateStudentEmail(int id, String newEmail)
-// 4. Delete
-// Implement method:
-// Java
-// public boolean deleteStudent(int id)
 import java.util.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
