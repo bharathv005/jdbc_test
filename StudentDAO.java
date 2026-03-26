@@ -61,8 +61,8 @@ public class StudentDAO {
 
         if (rs.next()) {
             System.out.println(
-                rs.getInt("id") + " " +
-                rs.getString("name") + " " +
+                rs.getInt("id")  +
+                rs.getString("name") +
                 rs.getString("email")
             );
         } else {
@@ -79,8 +79,8 @@ public class StudentDAO {
 
         while (rs.next()) {
             System.out.println(
-                rs.getInt("id") + " " +
-                rs.getString("name") + " " +
+                rs.getInt("id") +
+                rs.getString("name")  +
                 rs.getString("email")
             );
         }
