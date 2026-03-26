@@ -9,69 +9,54 @@ public class StudentDAO {
     public boolean addStudent(int id, String name, String email) throws Exception {
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/your_db", "root", "root");
         PreparedStatement ps = con.prepareStatement("INSERT INTO student VALUES (?, ?, ?)");
+        ps.setInt(1,id);
+        ps.setString(2,name);
+        ps.setString(3,email);
+        int i= ps.executeUpdate();
 
-        ps.setInt(1, id);
-        ps.setString(2, name);
-        ps.setString(3, email);
-
-        int i = ps.executeUpdate();
-
-        if (i > 0) {
+        if(i>0) {
             System.out.println("Success");
             return true;
-        } else {
+        }
+        else{
             System.out.println("Failure");
             return false;
         }
     }
 
     public void getStudentById(int id) throws Exception {
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/your_db", "root", "root");
-        PreparedStatement ps = con.prepareStatement("SELECT * FROM student WHERE id = ?");
-
+        Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/your_db", "root", "root");
+        PreparedStatement ps= con.prepareStatement("SELECT * FROM student WHERE id = ?");
         ps.setInt(1, id);
-        ResultSet rs = ps.executeQuery();
-
+        ResultSet rs= ps.executeQuery();
         if (rs.next()) {
-            System.out.println(
-                rs.getInt("id")  +
-                rs.getString("name") +
-                rs.getString("email")
-            );
-        } else {
-            System.out.println("Student not found");
+            System.out.println(rs.getInt("id")+rs.getString("name")+rs.getString("email"));
+        }
+        else{
+            System.out.println("Failure");
         }
     }
 
-    
     public void getAllStudents() throws Exception {
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/your_db", "root", "root");
-
-        PreparedStatement ps = con.prepareStatement("SELECT * FROM student");
-        ResultSet rs = ps.executeQuery();
-
-        while (rs.next()) {
-            System.out.println(
-                rs.getInt("id") +
-                rs.getString("name")  +
-                rs.getString("email")
-            );
+        PreparedStatement ps= con.prepareStatement("SELECT * FROM student");
+        ResultSet rs= ps.executeQuery();
+        while(rs.next()){
+            System.out.println(rs.getInt("id")+rs.getString("name")+rs.getString("email"));
         }
     }
 
     public boolean updateStudentEmail(int id, String newEmail) throws Exception {
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/your_db", "root", "root");
-        PreparedStatement ps = con.prepareStatement("UPDATE student SET email = ? WHERE id = ?");
-
-        ps.setString(1, newEmail);
-        ps.setInt(2, id);
-
-        int i = ps.executeUpdate();
-
-        if (i > 0) {
+        Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/your_db", "root", "root");
+        PreparedStatement ps= con.prepareStatement("UPDATE student SET email = ? WHERE id = ?");
+        ps.setString(1,newEmail);
+        ps.setInt(2,id);
+        int i= ps.executeUpdate();
+        if(i>0) {
             System.out.println("Success");
             return true;
-        } else {
+        } 
+        else {
             System.out.println("Failure");
             return false;
         }
@@ -79,17 +64,15 @@ public class StudentDAO {
 
     
     public boolean deleteStudent(int id) throws Exception {
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/your_db", "root", "root");
-        PreparedStatement ps = con.prepareStatement("DELETE FROM student WHERE id = ?");
-
+        Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/your_db", "root", "root");
+        PreparedStatement ps= con.prepareStatement("DELETE FROM student WHERE id = ?");
         ps.setInt(1, id);
-
-        int i = ps.executeUpdate();
-
-        if (i > 0) {
+        int i= ps.executeUpdate();
+        if(i>0) {
             System.out.println("Success");
             return true;
-        } else {
+        }
+        else{
             System.out.println("Failure");
             return false;
         }
