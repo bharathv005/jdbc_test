@@ -23,7 +23,7 @@
 // Implement method:
 // Java
 // public boolean deleteStudent(int id)
-
+import java.util.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -31,7 +31,7 @@ import java.sql.ResultSet;
 
 public class StudentDAO {
 
-    // 1. CREATE
+    // 1. Create (INSERT)
     public boolean addStudent(int id, String name, String email) throws Exception {
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/your_db", "root", "root");
         PreparedStatement ps = con.prepareStatement("INSERT INTO student VALUES (?, ?, ?)");
@@ -51,7 +51,7 @@ public class StudentDAO {
         }
     }
 
-    // 2. READ BY ID
+    // 2. Read (SELECT)
     public void getStudentById(int id) throws Exception {
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/your_db", "root", "root");
         PreparedStatement ps = con.prepareStatement("SELECT * FROM student WHERE id = ?");
@@ -70,7 +70,7 @@ public class StudentDAO {
         }
     }
 
-    // 3. READ ALL
+    // 2.1. READ ALL
     public void getAllStudents() throws Exception {
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/your_db", "root", "root");
 
@@ -86,7 +86,7 @@ public class StudentDAO {
         }
     }
 
-    // 4. UPDATE
+    // 3. Update
     public boolean updateStudentEmail(int id, String newEmail) throws Exception {
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/your_db", "root", "root");
         PreparedStatement ps = con.prepareStatement("UPDATE student SET email = ? WHERE id = ?");
@@ -105,7 +105,7 @@ public class StudentDAO {
         }
     }
 
-    // 5. DELETE
+    // 4. Delete
     public boolean deleteStudent(int id) throws Exception {
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/your_db", "root", "root");
         PreparedStatement ps = con.prepareStatement("DELETE FROM student WHERE id = ?");
